@@ -1,0 +1,60 @@
+// src/components/Navbar.tsx
+import { NavLink } from "react-router-dom";
+import { Home, Briefcase, Users, MessageSquare, Bell } from "lucide-react";
+
+function Navbar() {
+  return (
+    <header className="bg-white shadow-sm fixed top-0 left-0 w-full z-50">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-2">
+        {/* Logo + Search */}
+        <div className="flex items-center gap-4">
+          <div className="bg-blue-600 text-white font-bold text-xl px-2 py-1 rounded">
+            in
+          </div>
+          <input
+            type="text"
+            placeholder="Search"
+            className="bg-gray-100 rounded-full px-4 py-1 text-sm outline-none w-64"
+          />
+        </div>
+
+        {/* Nav */}
+        <nav className="flex items-center gap-8 text-gray-600">
+          <NavLink to="/" className="flex flex-col items-center text-sm" end>
+            <Home size={20} />
+            Home
+          </NavLink>
+          <NavLink
+            to="/projects"
+            className="flex flex-col items-center text-sm"
+          >
+            <Briefcase size={20} />
+            Projects
+          </NavLink>
+          <NavLink
+            to="/experience"
+            className="flex flex-col items-center text-sm"
+          >
+            <Users size={20} />
+            Experience
+          </NavLink>
+          <NavLink to="/blog" className="flex flex-col items-center text-sm">
+            <MessageSquare size={20} />
+            Blog
+          </NavLink>
+          <NavLink to="/contact" className="flex flex-col items-center text-sm">
+            <Bell size={20} />
+            Contact
+          </NavLink>
+          <img
+            src="https://media.licdn.com/dms/image/v2/D5603AQGWpPsk-9iBWA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1690612396654?e=1761782400&v=beta&t=lutURVVrZ1To-jp8SAp5r3UE5kp-zqile6soIqJRdWo"
+            alt="profile"
+            className="w-8 h-8 rounded-full border"
+          />
+        </nav>
+      </div>
+    </header>
+  );
+}
+
+export default Navbar;
