@@ -47,9 +47,9 @@ function Navbar() {
             Contact
           </NavLink>
           <img
-            src="https://media.licdn.com/dms/image/v2/D5603AQGWpPsk-9iBWA/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1690612396654?e=1761782400&v=beta&t=lutURVVrZ1To-jp8SAp5r3UE5kp-zqile6soIqJRdWo"
+            src="/assets/profilesecond.png"
             alt="profile"
-            className="w-8 h-8 rounded-full border"
+            className="w-8 h-8 rounded-full border object-cover "
           />
         </nav>
       </div>
