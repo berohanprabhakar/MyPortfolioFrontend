@@ -12,7 +12,7 @@ function Home() {
         <div className="h-40 bg-gradient-to-r from-green-600 to-blue-600 rounded-t-lg"></div>
         <div className="px-6 -mt-12 items-end gap-6">
           <img
-            src="/assets/profilesecond.png"
+            src="https://i.postimg.cc/bDDVzT76/Gemini-Generated-Image-5o5wiq5o5wiq5o5w.png"
             alt="profile"
             className="w-32 h-32 rounded-full border-4 border-white shadow-md object-cover object-top"
           />
@@ -26,7 +26,10 @@ function Home() {
               </p>
               <div className="flex gap-1.5">
                 <p className="text-sm text-gray-500">New Delhi, India</p>
-                <a className="text-sm text-blue-600 gap-6" href="/contact">
+                <a
+                  className="text-sm text-blue-600 gap-6 hover:underline"
+                  href="/#/contact"
+                >
                   Contact info
                 </a>
               </div>
@@ -51,8 +54,10 @@ function Home() {
 
       {/* Experience Section */}
       <section className="bg-white rounded-lg shadow p-6">
-        <h2 className="text-lg font-semibold mb-4">Experience</h2>
-        <Experience />
+        <h2 className="text-lg font-semibold mb-2">Experience</h2>
+        <div className="mt-4">
+          <Experience />
+        </div>
       </section>
 
       {/* Projects Section */}

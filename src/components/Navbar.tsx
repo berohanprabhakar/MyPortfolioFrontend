@@ -47,7 +47,7 @@ function Navbar() {
             Contact
           </NavLink>
           <img
-            src="/assets/profilesecond.png"
+            src="https://i.postimg.cc/bDDVzT76/Gemini-Generated-Image-5o5wiq5o5wiq5o5w.png"
             alt="profile"
             className="w-8 h-8 rounded-full border object-cover "
           />

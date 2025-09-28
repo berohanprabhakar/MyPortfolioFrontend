@@ -1,11 +1,11 @@
 const institutes = [
   {
     name: "Monet Analytics",
-    logo: "/assets/monet_networks_logo.jpeg",
+    logo: "https://i.postimg.cc/sB00d8N7/monet-networks-logo.jpg",
   },
   {
     name: "Delhi Technological University (Formerly DCE)",
-    logo: "/assets/dtulogo.jpeg",
+    logo: "https://i.postimg.cc/wvHzVmzR/dtulogo.jpg",
   },
 ];
 
