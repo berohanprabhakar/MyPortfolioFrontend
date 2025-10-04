@@ -23,7 +23,7 @@ function Experience() {
   return (
     <div className="p-9 space-y-4">
       {experience.map((exp, i) => (
-        <ExperienceTab key={i} exp={exp} />
+        <ExperienceTab key={i} exp={exp} expand={true} />
       ))}
     </div>
   );

@@ -1,8 +1,10 @@
-import Experience from "./Experience";
-import Projects from "./Projects";
-import Blog from "./Blog";
-import Contact from "./Contact";
-import Institutions from "../components/Institutions";
+import { CylindricalButton } from '../components/CylindricalButton';
+import ExperienceTab from '../components/ExperienceTab';
+import Institutions from '../components/Institutions';
+import { Contents } from '../content';
+import Blog from './Blog';
+import Contact from './Contact';
+import Projects from './Projects';
 
 function Home() {
   return (
@@ -20,16 +22,10 @@ function Home() {
           <div className="profile-card-parent flex">
             <div className="profile-card-left w-2/3">
               <h1 className="text-2xl font-semibold">Rohan Prabhakar</h1>
-              <p className="text-gray-700">
-                Software Developer | Backend Developer @ Monet Analytics || DTU
-                2024
-              </p>
+              <p className="text-gray-700">Software Developer | Backend Developer @ Monet Analytics || DTU 2024</p>
               <div className="flex gap-1.5">
                 <p className="text-sm text-gray-500">New Delhi, India</p>
-                <a
-                  className="text-sm text-blue-600 gap-6 hover:underline"
-                  href="/#/contact"
-                >
+                <a className="text-sm text-blue-500 font-semibold gap-6 hover:underline" href="/#/contact">
                   Contact info
                 </a>
               </div>
@@ -39,6 +35,14 @@ function Home() {
               <Institutions />
             </div>
           </div>
+          <div className="pb-2">
+            <CylindricalButton
+              expanded={false}
+              onClick={() => window.location.href = '/#/contact'}
+              labelCollapsed="Message"
+              className="text-white bg-blue-500 border hover:bg-blue-600 cursor-pointer"
+            />
+          </div>
         </div>
       </section>
 
@@ -46,17 +50,18 @@ function Home() {
       <div className="bg-white rounded-lg shadow p-6 px-6 py-4">
         <h2 className="text-lg font-semibold mb-2">About</h2>
         <p className="text-gray-700">
-          Backend-focused developer experienced in JavaScript, TypeScript,
-          databases, and cloud deployments. Passionate about scalable systems &
-          APIs.
+          Backend-focused developer experienced in JavaScript, TypeScript, databases, and cloud deployments. Passionate
+          about scalable systems & APIs.
         </p>
       </div>
 
       {/* Experience Section */}
       <section className="bg-white rounded-lg shadow p-6">
         <h2 className="text-lg font-semibold mb-2">Experience</h2>
-        <div className="mt-4">
-          <Experience />
+        <div className="mt-4 flex flex-col gap-6">
+          {Contents.experience.map((elem, id) => (
+            <ExperienceTab key={id} exp={elem} expand={false} />
+          ))}
         </div>
       </section>
 

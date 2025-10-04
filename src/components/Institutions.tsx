@@ -15,7 +15,7 @@ function Institutions() {
       {institutes.map((item, index) => (
         <div key={index} className="flex gap-2 items-center mb-2">
           <img className="w-8 h-8" src={item.logo} alt={item.name} />
-          <p className="text-black">{item.name}</p>
+          <p className="text-blue-500  font-semibold">{item.name}</p>
         </div>
       ))}
     </div>
