@@ -1,5 +1,4 @@
 import { useState } from "react";
-import ContactMePopUP from "../components/ContactMePopUP";
 import { CylindricalButton } from "../components/CylindricalButton";
 import ExperienceTab from "../components/ExperienceTab";
 import Institutions from "../components/Institutions";
@@ -10,7 +9,7 @@ import Contact from "./Contact";
 import ActivitySection from "../components/ActivitySection";
 
 function Home() {
-  const [showPopup, setShowPopup] = useState(false);
+  // const [showPopup, setShowPopup] = useState(false);
   return (
     <main className="pt-20 max-w-5xl mx-auto space-y-10">
       {/* Profile Card */}
@@ -34,7 +33,7 @@ function Home() {
                 <p className="text-sm text-gray-500">New Delhi, India</p>
                 <button
                   className="text-sm text-blue-500 font-semibold hover:underline"
-                  onClick={() => setShowPopup(true)}
+                  // onClick={() => setShowPopup(true)}
                 >
                   Contact info
                 </button>

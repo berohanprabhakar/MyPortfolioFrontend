@@ -1,6 +1,6 @@
 export async function fetchLeetCodeActivity(username: string) {
   try {
-    const res = await fetch("https://alfa-leetcode-api.onrender.com/berohanprabhakar/acSubmission", {
+    const res = await fetch(`https://alfa-leetcode-api.onrender.com/${username}/acSubmission`, {
       method: "GET",
     });
 

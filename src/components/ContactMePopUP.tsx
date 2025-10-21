@@ -1,6 +1,4 @@
-import React from "react";
-import ExperienceTab from "./ExperienceTab";
-import { Contents } from "../content";
+
 
 function ContactMePopUP() {
   return (
