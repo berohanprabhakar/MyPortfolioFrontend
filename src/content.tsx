@@ -4,6 +4,7 @@ export const Contents = {
       role: 'Back End Developer',
       company: 'Monet Analytics',
       period: '2024 - Present',
+      logo: 'https://i.postimg.cc/sB00d8N7/monet-networks-logo.jpg',
       location: 'Gurugram, Haryana, India',
       desc: 'Backend developer building analytics pipelines and APIs.',
       extra: 'Here you can add videos, demo images, or links for Monet Analytics.',
@@ -12,6 +13,7 @@ export const Contents = {
       role: 'Software Developer',
       company: 'Freelance',
       period: 'Jul 2024 - Sep 2024',
+      logo: 'https://i.postimg.cc/sB00d8N7/monet-networks-logo.jpg',
       location: 'Gurugram, Haryana, India',
       desc: 'Worked on real-time vehicle weighing application with Node.js, Electron, and SQL.',
       extra:
@@ -22,6 +24,7 @@ export const Contents = {
       company: 'Simri Cold Storage Private Limited',
       period: 'Jun 2023 - Aug 2023 ',
       location: 'Samastipur, Bihar, India',
+      logo: 'https://i.postimg.cc/sB00d8N7/monet-networks-logo.jpg',
       desc: 'Worked on company website creation.',
       extra:
         'Redesigned website using HTML, CSS, and JavaScript, resulting in a 40% increase in site traffic and a 25% improvement in user engagement.Enhanced system reliability by performing comprehensive testing, cutting bugs by 20% and reducing delivery time by 40%.Streamlined project workflows by applying SDLC best practices, reducing conflicts and improving overall project management efficiency by 40%.',

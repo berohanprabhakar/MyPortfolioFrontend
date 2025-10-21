@@ -1,23 +1,7 @@
 import ExperienceTab from "../components/ExperienceTab";
+import { Contents } from '../content';
 
-const experience = [
-  {
-    role: "Software Developer",
-    company: "Monet Analytics",
-    period: "2024 - Present",
-    desc: "Backend developer building analytics pipelines and APIs.",
-    extra:
-      "Here you can add videos, demo images, or links for Monet Analytics.",
-  },
-  {
-    role: "Intern",
-    company: "XYZ Startup",
-    period: "2023 - 2024",
-    desc: "Worked on Node.js microservices and database optimizations.",
-    extra:
-      "This could include a demo link, GitHub repo, or project screenshots.",
-  },
-];
+const experience = Contents.experience;
 
 function Experience() {
   return (

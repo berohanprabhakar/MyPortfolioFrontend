@@ -1,12 +1,16 @@
-import { CylindricalButton } from '../components/CylindricalButton';
-import ExperienceTab from '../components/ExperienceTab';
-import Institutions from '../components/Institutions';
-import { Contents } from '../content';
-import Blog from './Blog';
-import Contact from './Contact';
-import Projects from './Projects';
+import { useState } from "react";
+import ContactMePopUP from "../components/ContactMePopUP";
+import { CylindricalButton } from "../components/CylindricalButton";
+import ExperienceTab from "../components/ExperienceTab";
+import Institutions from "../components/Institutions";
+import { ProjectCard } from "../components/ProjectCard";
+import { Contents } from "../content";
+import Blog from "./Blog";
+import Contact from "./Contact";
+import ActivitySection from "../components/ActivitySection";
 
 function Home() {
+  const [showPopup, setShowPopup] = useState(false);
   return (
     <main className="pt-20 max-w-5xl mx-auto space-y-10">
       {/* Profile Card */}
@@ -22,12 +26,18 @@ function Home() {
           <div className="profile-card-parent flex">
             <div className="profile-card-left w-2/3">
               <h1 className="text-2xl font-semibold">Rohan Prabhakar</h1>
-              <p className="text-gray-700">Software Developer | Backend Developer @ Monet Analytics || DTU 2024</p>
-              <div className="flex gap-1.5">
+              <p className="text-gray-700">
+                Software Developer | Backend Developer @ Monet Analytics || DTU
+                2024
+              </p>
+              <div className="flex gap-1.5 relative">
                 <p className="text-sm text-gray-500">New Delhi, India</p>
-                <a className="text-sm text-blue-500 font-semibold gap-6 hover:underline" href="/#/contact">
+                <button
+                  className="text-sm text-blue-500 font-semibold hover:underline"
+                  onClick={() => setShowPopup(true)}
+                >
                   Contact info
-                </a>
+                </button>
               </div>
             </div>
 
@@ -38,7 +48,7 @@ function Home() {
           <div className="pb-2">
             <CylindricalButton
               expanded={false}
-              onClick={() => window.location.href = '/#/contact'}
+              onClick={() => (window.location.href = "/#/contact")}
               labelCollapsed="Message"
               className="text-white bg-blue-500 border hover:bg-blue-600 cursor-pointer"
             />
@@ -50,9 +60,16 @@ function Home() {
       <div className="bg-white rounded-lg shadow p-6 px-6 py-4">
         <h2 className="text-lg font-semibold mb-2">About</h2>
         <p className="text-gray-700">
-          Backend-focused developer experienced in JavaScript, TypeScript, databases, and cloud deployments. Passionate
-          about scalable systems & APIs.
+          Backend-focused developer experienced in JavaScript, TypeScript,
+          databases, and cloud deployments. Passionate about scalable systems &
+          APIs.
         </p>
+      </div>
+
+      {/* Activity Section */}
+      <div className="bg-white rounded-lg shadow p-6 px-6 py-4">
+        <h2 className="text-lg font-semibold mb-2">Activity</h2>
+        <ActivitySection/>
       </div>
 
       {/* Experience Section */}
@@ -66,9 +83,23 @@ function Home() {
       </section>
 
       {/* Projects Section */}
-      <section className="bg-white rounded-lg shadow p-6">
-        <h2 className="text-lg font-semibold mb-4">Projects</h2>
-        <Projects />
+      <section className="bg-white rounded-lg shadow">
+        <div className="projects p-6">
+          <h2 className="text-lg font-semibold mb-2">Projects</h2>
+          <div className="mt-4 flex flex-col gap-1">
+            {Contents.projects.slice(0, 2).map((proj, i) => (
+              <ProjectCard key={i} project={proj} compact />
+            ))}
+          </div>
+        </div>
+        <div className="h-14 bg-red-500 p-4">
+          <h3>
+            {" "}
+            Show all{" "}
+            {Contents.projects.length ? Contents.projects.length - 2 : 0}{" "}
+            projects
+          </h3>
+        </div>
       </section>
 
       {/* Blog Section */}
