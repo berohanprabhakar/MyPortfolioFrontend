@@ -39,7 +39,7 @@ function ExperienceTab({ exp, expand }: any) {
         >
           <div className="p-3 border-t border-gray-200 text-gray-600">
             <ul className="list-disc list-inside space-y-1">
-              {exp.extra?.map((point, index) => (
+              {exp.extra?.map((point: any, index : any) => (
                 <li key={index}>{point}</li>
               ))}
             </ul>

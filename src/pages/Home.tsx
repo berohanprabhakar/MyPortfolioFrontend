@@ -7,7 +7,6 @@ import Blog from "./Blog";
 import Contact from "./Contact";
 import ActivitySection from "../components/ActivitySection";
 import { useNavigate } from "react-router-dom";
-import MessagePop from "../components/MessagePop";
 
 function Home() {
   const navigate = useNavigate();
