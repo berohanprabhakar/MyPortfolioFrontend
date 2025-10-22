@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { CylindricalButton } from "../components/CylindricalButton";
 import ExperienceTab from "../components/ExperienceTab";
 import Institutions from "../components/Institutions";
@@ -7,8 +6,11 @@ import { Contents } from "../content";
 import Blog from "./Blog";
 import Contact from "./Contact";
 import ActivitySection from "../components/ActivitySection";
+import { useNavigate } from "react-router-dom";
+import MessagePop from "../components/MessagePop";
 
 function Home() {
+  const navigate = useNavigate();
   // const [showPopup, setShowPopup] = useState(false);
   return (
     <main className="pt-20 max-w-5xl mx-auto space-y-10">
@@ -47,32 +49,35 @@ function Home() {
           <div className="pb-2">
             <CylindricalButton
               expanded={false}
-              onClick={() => (window.location.href = "/#/contact")}
+              onClick={() => navigate("/contact")}
               labelCollapsed="Message"
               className="text-white bg-blue-500 border hover:bg-blue-600 cursor-pointer"
             />
           </div>
         </div>
       </section>
-
+      
       {/* About Section */}
       <div className="bg-white rounded-lg shadow p-6 px-6 py-4">
         <h2 className="text-lg font-semibold mb-2">About</h2>
         <p className="text-gray-700">
-          Backend-focused developer experienced in JavaScript, TypeScript,
-          databases, and cloud deployments. Passionate about scalable systems &
-          APIs.
+          💻 Software Developer who build systems, not just code syntax.
+          <br></br>
+          Hey, I’m Rohan — a guy who loves building things that work fast and
+          work smart. I started with C++ and DSA back in college, and that
+          shaped how I think about code — clean logic, optimized structure, no
+          fluff. While most people write APIs, I design systems with purpose.
         </p>
       </div>
 
       {/* Activity Section */}
       <div className="bg-white rounded-lg shadow p-6 px-6 py-4">
         <h2 className="text-lg font-semibold mb-2">Activity</h2>
-        <ActivitySection/>
+        <ActivitySection />
       </div>
 
       {/* Experience Section */}
-      <section className="bg-white rounded-lg shadow p-6">
+      <section className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
         <h2 className="text-lg font-semibold mb-2">Experience</h2>
         <div className="mt-4 flex flex-col gap-6">
           {Contents.experience.map((elem, id) => (
@@ -91,14 +96,14 @@ function Home() {
             ))}
           </div>
         </div>
-        <div className="h-14 bg-red-500 p-4">
+        {/* <div className="h-14 bg-red-500 p-4">
           <h3>
             {" "}
             Show all{" "}
             {Contents.projects.length ? Contents.projects.length - 2 : 0}{" "}
             projects
           </h3>
-        </div>
+        </div> */}
       </section>
 
       {/* Blog Section */}

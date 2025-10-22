@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ActivityCard from "./ActivityCard";
 import { fetchGitHubActivity } from "../utils/github";
 import { fetchLeetCodeActivity } from "../utils/leetcode";
+import { Loader } from "lucide-react";
 
 interface Activity {
   icon: "github" | "leetcode";
@@ -11,7 +12,6 @@ interface Activity {
 }
 
 const parseDate = (str: any) => {
-  // Example input: "22/10/2025, 00:18:49"
   const [datePart, timePart] = str.split(", ");
   const [day, month, year] = datePart.split("/").map(Number);
   const [hour, minute, second] = timePart.split(":").map(Number);
@@ -30,7 +30,8 @@ const ActivitySection: React.FC = () => {
       ]);
 
       const combined = [...gitHub, ...leetCode].sort(
-        (a, b) => parseDate(b.timestamp).getTime() - parseDate(a.timestamp).getTime()
+        (a, b) =>
+          parseDate(b.timestamp).getTime() - parseDate(a.timestamp).getTime()
       );
 
       console.log(combined);
@@ -44,14 +45,21 @@ const ActivitySection: React.FC = () => {
 
   return (
     <section className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
-      <h2 className="text-xl font-semibold mb-4 text-gray-800">Activity</h2>
-
       {loading ? (
-        <p className="text-gray-400 text-sm">Loading your activity...</p>
+        <p className="text-gray-400 text-sm flex gap-1 align-middle justify-center"> <Loader /> Loading your activity...</p>
       ) : activities.length === 0 ? (
-        <p className="text-gray-400 text-sm">No recent activity found.</p>
+        <p className="text-gray-400 text-sm"> No recent activity found.</p>
       ) : (
-        <div className="flex flex-col gap-4">
+        // ✅ Scrollable container for activities
+        <div
+          className="
+          flex flex-col gap-4
+          max-h-[420px]             /* 👈 fits around 5 cards */
+          overflow-y-auto
+          pr-2
+          scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100
+        "
+        >
           {activities.map((a, i) => (
             <ActivityCard key={i} {...a} />
           ))}
