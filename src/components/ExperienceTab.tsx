@@ -43,7 +43,7 @@ function ExperienceTab({ exp, expand }: any) {
                 <li key={index}>{point}</li>
               ))}
             </ul>
-            <img src="/demo.png" alt="demo" className="mt-2 rounded" />
+            {/* <img src="/demo.png" alt="demo" className="mt-2 rounded" />
             <a
               href="https://demo-link.com"
               className="text-blue-500 underline"
@@ -51,7 +51,7 @@ function ExperienceTab({ exp, expand }: any) {
               rel="noopener noreferrer"
             >
               Live Demo
-            </a>
+            </a> */}
           </div>
         </div>
 

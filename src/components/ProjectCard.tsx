@@ -4,6 +4,7 @@ interface ProjectProps {
   project: {
     title: string;
     description: string;
+    skills?: string[];
     tech?: string[];
     link?: string;
     logo?: string;
@@ -35,7 +36,7 @@ export function ProjectCard({ project, compact = false }: ProjectProps) {
           {project.title}
         </h3>
         <p
-          className={`text-gray-600 ${
+          className={`text-gray-600 whitespace-pre-line ${
             compact ? "text-sm mt-1" : "text-[15px] mt-2"
           }`}
         >
@@ -45,6 +46,19 @@ export function ProjectCard({ project, compact = false }: ProjectProps) {
         {project.tech && (
           <div className="mt-2 flex flex-wrap gap-2">
             {project.tech.map((t, i) => (
+              <span
+                key={i}
+                className="px-2 py-0.5 text-xs bg-gray-100 rounded-full text-gray-700"
+              >
+                {t}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {project.skills && (
+          <div className="mt-2 flex flex-wrap gap-2">
+            {project.skills.map((t, i) => (
               <span
                 key={i}
                 className="px-2 py-0.5 text-xs bg-gray-100 rounded-full text-gray-700"

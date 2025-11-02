@@ -1,9 +1,8 @@
-// src/pages/Contact.tsx
-function Contact() {
+
+function ContactCard() {
   return (
-    <main className="pt-20 max-w-4xl mx-auto">
+    <main className="max-w-4xl mx-auto">
       <div className="bg-white shadow rounded-lg p-6 space-y-4">
-        <h2 className="text-lg font-semibold">Contact Me</h2>
         <p>
           Email:{" "}
           <a href="mailto:myrohanprabhakar@gmail.com" className="text-blue-600">
@@ -57,4 +56,5 @@ function Contact() {
     </main>
   );
 }
-export default Contact;
+
+export default ContactCard;

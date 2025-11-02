@@ -3,10 +3,9 @@ import ExperienceTab from "../components/ExperienceTab";
 import Institutions from "../components/Institutions";
 import { ProjectCard } from "../components/ProjectCard";
 import { Contents } from "../content";
-import Blog from "./Blog";
-import Contact from "./Contact";
 import ActivitySection from "../components/ActivitySection";
 import { useNavigate } from "react-router-dom";
+import ContactCard from "../components/ContactCard";
 
 function Home() {
   const navigate = useNavigate();
@@ -55,7 +54,7 @@ function Home() {
           </div>
         </div>
       </section>
-      
+
       {/* About Section */}
       <div className="bg-white rounded-lg shadow p-6 px-6 py-4">
         <h2 className="text-lg font-semibold mb-2">About</h2>
@@ -90,31 +89,23 @@ function Home() {
         <div className="projects p-6">
           <h2 className="text-lg font-semibold mb-2">Projects</h2>
           <div className="mt-4 flex flex-col gap-1">
-            {Contents.projects.slice(0, 2).map((proj, i) => (
+            {Contents.projects.map((proj, i) => (
               <ProjectCard key={i} project={proj} compact />
             ))}
           </div>
         </div>
-        {/* <div className="h-14 bg-red-500 p-4">
-          <h3>
-            {" "}
-            Show all{" "}
-            {Contents.projects.length ? Contents.projects.length - 2 : 0}{" "}
-            projects
-          </h3>
-        </div> */}
       </section>
 
       {/* Blog Section */}
-      <section className="bg-white rounded-lg shadow p-6">
+      {/* <section className="bg-white rounded-lg shadow p-6">
         <h2 className="text-lg font-semibold mb-4">Blog</h2>
         <Blog />
-      </section>
+      </section> */}
 
       {/* Contact Section */}
       <section className="bg-white rounded-lg shadow p-6">
         <h2 className="text-lg font-semibold mb-4">Contact</h2>
-        <Contact />
+        <ContactCard />
       </section>
     </main>
   );

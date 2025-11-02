@@ -9,14 +9,8 @@ interface Activity {
   title: string;
   description: string;
   timestamp: string;
+  timeago : string;
 }
-
-const parseDate = (str: any) => {
-  const [datePart, timePart] = str.split(", ");
-  const [day, month, year] = datePart.split("/").map(Number);
-  const [hour, minute, second] = timePart.split(":").map(Number);
-  return new Date(year, month - 1, day, hour, minute, second);
-};
 
 const ActivitySection: React.FC = () => {
   const [activities, setActivities] = useState<Activity[]>([]);
@@ -29,10 +23,7 @@ const ActivitySection: React.FC = () => {
         fetchLeetCodeActivity("berohanprabhakar"), // replace with your username
       ]);
 
-      const combined = [...gitHub, ...leetCode].sort(
-        (a, b) =>
-          parseDate(b.timestamp).getTime() - parseDate(a.timestamp).getTime()
-      );
+      const combined = [...gitHub, ...leetCode];
 
       console.log(combined);
 

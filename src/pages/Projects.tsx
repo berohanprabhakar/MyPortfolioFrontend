@@ -1,16 +1,5 @@
-// src/pages/Projects.tsx
-const projects = [
-  {
-    title: "Survey Platform (Fulcrum-like)",
-    description: "Built a scalable survey distribution platform...",
-    link: "https://github.com/rohan/project1",
-  },
-  {
-    title: "Portfolio Website",
-    description: "LinkedIn-inspired portfolio built with React + Tailwind.",
-    link: "https://github.com/rohan/portfolio",
-  },
-];
+import { Contents } from '../content';
+const projects = Contents?.projects;
 
 function Projects() {
   return (
@@ -18,7 +7,7 @@ function Projects() {
       {projects.map((project, index) => (
         <div key={index} className="bg-white shadow rounded-lg p-6">
           <h3 className="text-xl font-semibold">{project.title}</h3>
-          <p className="text-gray-700">{project.description}</p>
+          <p className="text-gray-700 whitespace-pre-line">{project.description}</p>
           <a
             href={project.link}
             target="_blank"

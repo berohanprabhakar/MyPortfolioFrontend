@@ -38,7 +38,7 @@ export const Contents = {
       ],
     },
   ],
-  
+
   blogs: [
     {
       title: "Scaling Backend Systems with Node.js",
@@ -54,14 +54,25 @@ export const Contents = {
 
   projects: [
     {
-      title: "Survey Platform (Fulcrum-like)",
-      description: "Built a scalable survey distribution platform...",
-      link: "https://github.com/rohan/project1",
+      title: "Akashwani",
+      description:
+        "🎙️ Akashwani – WebRTC-Based Calling & Messaging App 📞💬\n\nBuilt Akashwani, a full-fledged WebRTC-based calling and messaging web app designed to deliver seamless communication even on slow internet connections. Inspired by Telegram, it includes:\n\n✅ Real-time voice & video calls (VP9 + Opus, TURN servers for connectivity)\n✅ Adaptive bitrate control for optimized performance\n✅ AI-powered noise suppression for crystal-clear audio\n✅ End-to-end encryption ensuring secure conversations\n✅ Background calling support without interfering with SIM calls\n\nThis project pushed the boundaries of WebRTC optimization, prioritizing low latency, high-quality communication, and robust security measures",
+      skills: ["Node Js", "Express.js", "Socket.io", "Webrtc"],
+        link: "https://github.com/rohan/project1",
     },
     {
-      title: "Portfolio Website",
-      description: "LinkedIn-inspired portfolio built with React + Tailwind.",
+      title: "CureSpace",
+      description:
+        "Introducing a pioneering Android application designed to provide real-time updates on COVID-19 bed availability in Delhi. This app seamlessly aggregates data from 100+ hospitals with an impressive 98% accuracy rate, facilitating easy access to vital healthcare information. Experience a revamped UI/UX driving a 30% increase in user engagement, enabling over 100 users to effortlessly access crucial healthcare data during the pandemic. The app also features color-coded oxygen indicators, leading to a 25% improvement in identifying oxygen-equipped hospitals and reducing conflicts in critical situations. Powered by Kotlin, XML, and Web Service technologies.",
+      skills: ["Firebase", "Java", "User Interface Design", "XML"],
       link: "https://github.com/rohan/portfolio",
+    },
+    {
+      title: "MoneySaver",
+      description:
+        'Meet "Moneysaver," your go-to Android app for personal finance tracking. Developed with Java, XML, Firebase Database, and Pie Chart technology, it supports personal and shared budgets across 10+ use cases. Dive into interactive analytics with pie charts and precise numerical data for weekly, monthly, and daily insights, boasting an impressive 98.6% data accuracy. Your financial companion for smart and seamless money management.',
+      skills: ["Firebase", "Java", "User Interface Design", "XML"],
+      link: "dummy",
     },
   ],
   institutes: [

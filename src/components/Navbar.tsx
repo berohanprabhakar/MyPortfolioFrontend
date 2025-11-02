@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import { Home, Briefcase, Users, MessageSquare, Bell } from "lucide-react";
+import { Home, Briefcase, Users, Bell } from "lucide-react";
 
 function Navbar() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -72,7 +72,7 @@ function Navbar() {
             Experience
           </NavLink>
 
-          <NavLink
+          {/* <NavLink
             to="/blog"
             className={({ isActive }) =>
               `${baseClasses} ${isActive ? activeClasses : inactiveClasses} active:scale-95 active:opacity-80`
@@ -80,7 +80,7 @@ function Navbar() {
           >
             <MessageSquare size={20} />
             Blog
-          </NavLink>
+          </NavLink> */}
 
           <NavLink
             to="/contact"
