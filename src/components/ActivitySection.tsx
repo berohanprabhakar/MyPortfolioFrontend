@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
-import ActivityCard from "./ActivityCard";
-import { fetchGitHubActivity } from "../utils/github";
-import { fetchLeetCodeActivity } from "../utils/leetcode";
-import { Loader } from "lucide-react";
+import { Loader } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { fetchGitHubActivity } from '../utils/github';
+import { fetchLeetCodeActivity } from '../utils/leetcode';
+import ActivityCard from './ActivityCard';
 
 interface Activity {
-  icon: "github" | "leetcode";
+  icon: 'github' | 'leetcode';
   title: string;
   description: string;
   timestamp: string;
@@ -13,64 +13,63 @@ interface Activity {
 }
 
 function toMillis(t: any) {
-  if (typeof t === "number") return t;
+  if (typeof t === 'number') return t;
 
-  const [datePart, timePart] = t.split(", ");
-  const [d, m, y] = datePart.split("/").map(Number);
-  const [hh, mm] = timePart.split(":").map(Number);
+  const [datePart, timePart] = t.split(', ');
+  const [d, m, y] = datePart.split('/').map(Number);
+  const [hh, mm] = timePart.split(':').map(Number);
 
   return new Date(y, m - 1, d, hh, mm).getTime();
 }
 function time_ago(time: any) {
   switch (typeof time) {
-    case "number":
+    case 'number':
       break;
-    case "string":
+    case 'string':
       time = +new Date(time);
       break;
-    case "object":
+    case 'object':
       if (time.constructor === Date) time = time.getTime();
       break;
     default:
       time = +new Date();
   }
 
-  var time_formats = [
-    [60, "seconds", 1],
-    [120, "1 minute ago", "1 minute from now"],
-    [3600, "minutes", 60],
-    [7200, "1 hour ago", "1 hour from now"],
-    [86400, "hours", 3600],
-    [172800, "Yesterday", "Tomorrow"],
-    [604800, "days", 86400],
-    [1209600, "Last week", "Next week"],
-    [2419200, "weeks", 604800],
-    [4838400, "Last month", "Next month"],
-    [29030400, "months", 2419200],
-    [58060800, "Last year", "Next year"],
-    [2903040000, "years", 29030400],
-    [5806080000, "Last century", "Next century"],
-    [58060800000, "centuries", 2903040000],
+  const time_formats = [
+    [60, 'seconds', 1],
+    [120, '1 minute ago', '1 minute from now'],
+    [3600, 'minutes', 60],
+    [7200, '1 hour ago', '1 hour from now'],
+    [86400, 'hours', 3600],
+    [172800, 'Yesterday', 'Tomorrow'],
+    [604800, 'days', 86400],
+    [1209600, 'Last week', 'Next week'],
+    [2419200, 'weeks', 604800],
+    [4838400, 'Last month', 'Next month'],
+    [29030400, 'months', 2419200],
+    [58060800, 'Last year', 'Next year'],
+    [2903040000, 'years', 29030400],
+    [5806080000, 'Last century', 'Next century'],
+    [58060800000, 'centuries', 2903040000],
   ];
 
-  var seconds = (+new Date() - time) / 1000,
-    token = "ago",
+  let seconds = (+new Date() - time) / 1000,
+    token = 'ago',
     list_choice = 1;
 
-  if (seconds == 0) return "Just now";
+  if (seconds == 0) return 'Just now';
   if (seconds < 0) {
     seconds = Math.abs(seconds);
-    token = "from now";
+    token = 'from now';
     list_choice = 2;
   }
-  var i = 0,
+  let i = 0,
     format;
 
   while ((format = time_formats[i++]))
     if (seconds < (format[0] as number)) {
-      if (typeof format[2] == "string") return format[list_choice];
-      else
-        return Math.floor(seconds / Number(format[2])) + " " + format[1] + " " + token;
+      if (typeof format[2] == 'string') return format[list_choice];
+      else return Math.floor(seconds / Number(format[2])) + ' ' + format[1] + ' ' + token;
     }
 
   return time;
@@ -83,8 +82,8 @@ const ActivitySection: React.FC = () => {
   useEffect(() => {
     const load = async () => {
       const [gitHub, leetCode] = await Promise.all([
-        fetchGitHubActivity("berohanprabhakar"), // replace with your username
-        fetchLeetCodeActivity("berohanprabhakar"), // replace with your username
+        fetchGitHubActivity('berohanprabhakar'), // replace with your username
+        fetchLeetCodeActivity('berohanprabhakar'), // replace with your username
       ]);
 
       const combined = [...gitHub, ...leetCode]
@@ -106,7 +105,7 @@ const ActivitySection: React.FC = () => {
     <section className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
       {loading ? (
         <p className="text-gray-400 text-sm flex gap-1 align-middle justify-center">
-          {" "}
+          {' '}
           <Loader /> Loading your activity...
         </p>
       ) : activities.length === 0 ? (
@@ -120,8 +119,7 @@ const ActivitySection: React.FC = () => {
           overflow-y-auto
           pr-2
           scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100
-        "
-        >
+        ">
           {activities.map((a, i) => (
             <ActivityCard key={i} {...a} />
           ))}
