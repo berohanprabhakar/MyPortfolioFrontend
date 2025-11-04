@@ -26,7 +26,7 @@ function Navbar() {
         {/* Logo + Search */}
         <div className="flex items-center gap-4">
           <div className="bg-blue-600 text-white font-bold text-xl px-2 py-1 rounded">
-            in
+            rp
           </div>
           <form onSubmit={handleSearchSubmit}>
             <input
