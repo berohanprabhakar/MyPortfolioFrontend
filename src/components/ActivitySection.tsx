@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { fetchGitHubActivity } from '../utils/github';
 import { fetchLeetCodeActivity } from '../utils/leetcode';
 import ActivityCard from './ActivityCard';
+import Skeleton from 'react-loading-skeleton';
+import ActivityCardSkeleton from './ActivityCardSkeleton';
 
 interface Activity {
   icon: 'github' | 'leetcode';
@@ -104,10 +106,11 @@ const ActivitySection: React.FC = () => {
   return (
     <section className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
       {loading ? (
-        <p className="text-gray-400 text-sm flex gap-1 align-middle justify-center">
-          {' '}
-          <Loader /> Loading your activity...
-        </p>
+        <div className="flex flex-col gap-4 max-h-[420px] overflow-y-auto pr-2">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <ActivityCardSkeleton key={i} />
+          ))}
+        </div>
       ) : activities.length === 0 ? (
         <p className="text-gray-400 text-sm"> No recent activity found.</p>
       ) : (
