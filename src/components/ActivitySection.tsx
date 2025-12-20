@@ -1,9 +1,7 @@
-import { Loader } from 'lucide-react';
 import React, { useEffect, useState } from 'react';
 import { fetchGitHubActivity } from '../utils/github';
 import { fetchLeetCodeActivity } from '../utils/leetcode';
 import ActivityCard from './ActivityCard';
-import Skeleton from 'react-loading-skeleton';
 import ActivityCardSkeleton from './ActivityCardSkeleton';
 
 interface Activity {

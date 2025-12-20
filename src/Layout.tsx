@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Navbar from "./components/Navbar";
 import { Outlet } from "react-router-dom";
+import Snowfall from "react-snowfall";
 
 function Layout() {
   const [navHeight, setNavHeight] = useState(0);
@@ -14,8 +15,9 @@ function Layout() {
 
   return (
     <>
-      <Navbar />
-      <div style={{ paddingTop: navHeight }}>
+      <Snowfall style={{ height: "100%" }} />
+      <Navbar/>
+      <div style={{ paddingTop: navHeight}}>
         <Outlet />
       </div>
     </>
