@@ -1,13 +1,12 @@
-import { useEffect, useState } from "react";
-import Navbar from "./components/Navbar";
-import { Outlet } from "react-router-dom";
-import Snowfall from "react-snowfall";
+import { useEffect, useState } from 'react';
+import { Outlet } from 'react-router-dom';
+import Navbar from './components/Navbar';
 
 function Layout() {
   const [navHeight, setNavHeight] = useState(0);
 
   useEffect(() => {
-    const nav = document.getElementById("navbar");
+    const nav = document.getElementById('navbar');
     if (nav) {
       setNavHeight(nav.offsetHeight);
     }
@@ -15,9 +14,8 @@ function Layout() {
 
   return (
     <>
-      <Snowfall style={{ height: "100%" }} />
-      <Navbar/>
-      <div style={{ paddingTop: navHeight}}>
+      <Navbar />
+      <div style={{ paddingTop: navHeight }}>
         <Outlet />
       </div>
     </>
