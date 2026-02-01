@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Contents } from "../content";
-import { PanelTopOpenIcon, ZoomIn, ZoomOut, RotateCcw, Download } from "lucide-react";
+import { Download, PanelTopOpenIcon } from "lucide-react";
 
 const resume = Contents.personaldetails.resume;
 const previewUrl = `${resume}/preview`;
@@ -9,12 +9,7 @@ const downloadUrl = `${resume}/export?format=pdf`;
 
 function ContactCard({ page }: any) {
   const [open, setOpen] = useState(false);
-  const [zoom, setZoom] = useState(1);
   const { personaldetails } = Contents;
-
-  const zoomIn = () => setZoom((z) => Math.min(z + 0.1, 2));
-  const zoomOut = () => setZoom((z) => Math.max(z - 0.1, 0.6));
-  const resetZoom = () => setZoom(1);
 
   return (
     <main className={`max-w-4xl mx-auto ${page ? "pt-20" : ""}`}>
@@ -54,19 +49,20 @@ function ContactCard({ page }: any) {
           </a>
         </p>
 
+        {/* Action Buttons */}
         <div className="flex gap-3 pt-2">
           <button
             onClick={() => setOpen(true)}
             className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
           >
-            <PanelTopOpenIcon size={18} /> View Resume 
+            <PanelTopOpenIcon size={18} /> View Resume
           </button>
 
           <a
             href={downloadUrl}
-            className="flex gap-3 bg-blue-800 text-white px-4 py-2 rounded-lg hover:bg-blue-900 transition"
+            className="bg-blue-900 flex items-center gap-2 text-white px-4 py-2 rounded-lg hover:bg-blue-950 transition"
           >
-            <Download size={18}/>  Download PDF
+            <Download size={18} /> Download PDF
           </a>
         </div>
       </div>
@@ -88,62 +84,35 @@ function ContactCard({ page }: any) {
               className="bg-white w-[92%] h-[92%] rounded-xl overflow-hidden shadow-2xl flex flex-col"
             >
               {/* Top Bar */}
-              <div className="flex items-center justify-between px-4 py-3 border-b bg-white">
+              <div className="flex items-center justify-between px-4 py-3 border-b bg-white sticky top-0 z-10">
                 <span className="text-sm font-semibold text-gray-700">
                   Resume Preview
                 </span>
 
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={zoomOut}
-                    className="p-1.5 rounded hover:bg-gray-100"
-                  >
-                    <ZoomOut size={18} />
-                  </button>
-
-                  <button
-                    onClick={resetZoom}
-                    className="p-1.5 rounded hover:bg-gray-100 text-sm"
-                  >
-                    <RotateCcw size={16} />
-                  </button>
-
-                  <button
-                    onClick={zoomIn}
-                    className="p-1.5 rounded hover:bg-gray-100"
-                  >
-                    <ZoomIn size={18} />
-                  </button>
-
+                <div className="flex items-center gap-3">
                   <a
                     href={downloadUrl}
                     download
-                    className="ml-2 bg-blue-600 text-white px-3 py-1.5 rounded-md text-sm hover:bg-blue-700 transition"
+                    className="bg-blue-600 text-white px-4 py-1.5 rounded-md text-sm hover:bg-blue-700 transition"
                   >
-                    Download
+                    Download PDF
                   </a>
 
                   <button
                     onClick={() => setOpen(false)}
-                    className="ml-1 text-gray-600 hover:text-black text-lg"
+                    className="text-gray-600 hover:text-black text-lg"
                   >
                     ✕
                   </button>
                 </div>
               </div>
 
-              {/* Resume Viewer (single scroll) */}
-              <div className="flex-1 bg-gray-100 flex justify-center overflow-hidden">
-                <div
-                  className="origin-top bg-white shadow"
-                  style={{
-                    transform: `scale(${zoom})`,
-                    width: "850px",
-                  }}
-                >
+              {/* Resume Viewer */}
+              <div className="flex-1 overflow-y-auto bg-gray-100 flex justify-center py-6">
+                <div className="w-full max-w-[850px] bg-white shadow">
                   <iframe
                     src={previewUrl}
-                    className="w-[850px] h-[1100px]"
+                    className="w-full h-[1100px]"
                     frameBorder="0"
                   />
                 </div>
