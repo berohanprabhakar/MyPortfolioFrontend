@@ -97,6 +97,7 @@ export const Contents = {
   personaldetails: {
     name: "Rohan Prabhakar",
     email: "myrohanprabhakar@gmail.com",
+    resume : "https://docs.google.com/document/d/1DForgllikFdizF_v044vbeEKFN9q1N2FuiVa8zfqfkk",
     tagline:
       "Software Developer | Backend Developer @ Monet Analytics || DTU 2024",
     location: "New Delhi, India",
