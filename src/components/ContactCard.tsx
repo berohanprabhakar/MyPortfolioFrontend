@@ -1,58 +1,94 @@
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Contents } from "../content";
 
-function ContactCard() {
+const RESUME_ID = "1DForgllikFdizF_v044vbeEKFN9q1N2FuiVa8zfqfkk";
+const previewUrl = `https://docs.google.com/document/d/${RESUME_ID}/preview`;
+const downloadUrl = `https://docs.google.com/document/d/${RESUME_ID}/export?format=pdf`;
+
+function ContactCard({ page }: any) {
+  const [open, setOpen] = useState(false);
+  const { personaldetails } = Contents;
+
   return (
-    <main className="max-w-4xl mx-auto">
+    <main className={`max-w-4xl mx-auto ${page ? "pt-20" : ""}`}>
       <div className="bg-white shadow rounded-lg p-6 space-y-4">
         <p>
           Email:{" "}
-          <a href="mailto:myrohanprabhakar@gmail.com" className="text-blue-600">
-            myrohanprabhakar@gmail.com
+          <a href={`mailto:${personaldetails.email}`} className="text-blue-600">
+            {personaldetails.email}
           </a>
         </p>
         <p>
           LinkedIn:{" "}
           <a
-            href="https://linkedin.com/in/rohan--prabhakar"
+            href={`https://${personaldetails.socials.linkedin}`}
             target="_blank"
             className="text-blue-600"
           >
-            linkedin.com/in/rohan--prabhakar
+            {personaldetails.socials.linkedin}
           </a>
         </p>
         <p>
           GitHub:{" "}
           <a
-            href="https://github.com/berohanprabhakar"
+            href={`https://${personaldetails.socials.github}`}
             target="_blank"
             className="text-blue-600"
           >
-            github.com/berohanprabhakar
+            {personaldetails.socials.github}
           </a>
         </p>
-        {/* <button className="bg-blue-600 text-white px-4 py-2 rounded-lg">Download Resume</button>
-         */}
-        <a
-          href="/MyPortfolioFrontend/assets/Rohan_Prabhakar_CV.pdf"
-          download
-          className="bg-blue-600 text-white w-fit px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-blue-700 transition"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-5 h-5"
+
+        <div className="flex gap-3 pt-2">
+          <button
+            onClick={() => setOpen(true)}
+            className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
           >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M12 16.5v-12m0 12 4.5-4.5M12 16.5l-4.5-4.5M3 21h18"
-            />
-          </svg>
-          Download Resume
-        </a>
+            View Resume
+          </button>
+
+          <a
+            href={downloadUrl}
+            className="bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-black transition"
+          >
+            Download PDF
+          </a>
+        </div>
       </div>
+
+      {/* Modal Resume Viewer */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center"
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 40 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 40 }}
+              transition={{ type: "spring", stiffness: 120 }}
+              className="bg-white w-[92%] h-[92%] rounded-xl overflow-hidden relative shadow-2xl"
+            >
+              <button
+                onClick={() => setOpen(false)}
+                className="absolute top-3 right-3 text-black text-xl z-10"
+              >
+                ✕
+              </button>
+
+              <iframe
+                src={previewUrl}
+                className="w-full h-full"
+                frameBorder="0"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }

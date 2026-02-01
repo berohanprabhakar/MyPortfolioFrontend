@@ -6,10 +6,13 @@ import { Contents } from "../content";
 import ActivitySection from "../components/ActivitySection";
 import { useNavigate } from "react-router-dom";
 import ContactCard from "../components/ContactCard";
+import { useState } from "react";
+import ContactInfoModal from "../components/ContactInfoModal";
 
 function Home() {
   const navigate = useNavigate();
-  // const [showPopup, setShowPopup] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const { personaldetails } = Contents;
   return (
     <main className="pt-20 max-w-5xl mx-auto space-y-10">
       {/* Profile Card */}
@@ -17,28 +20,32 @@ function Home() {
         <div className="h-40 bg-gradient-to-r from-green-600 to-blue-600 rounded-t-lg"></div>
         <div className="px-6 -mt-12 items-end gap-6">
           <img
-            src="https://i.postimg.cc/bDDVzT76/Gemini-Generated-Image-5o5wiq5o5wiq5o5w.png"
+            src={personaldetails.avtar}
             alt="profile"
             className="w-32 h-32 rounded-full border-4 border-white shadow-md object-cover object-top"
           />
 
           <div className="profile-card-parent flex">
             <div className="profile-card-left w-2/3">
-              <h1 className="text-2xl font-semibold">Rohan Prabhakar</h1>
-              <p className="text-gray-700">
-                Software Developer | Backend Developer @ Monet Analytics || DTU
-                2024
-              </p>
+              <h1 className="text-2xl font-semibold">{personaldetails.name}</h1>
+              <p className="text-gray-700"> {personaldetails.tagline}</p>
               <div className="flex gap-1.5 relative">
-                <p className="text-sm text-gray-500">New Delhi, India</p>
+                <p className="text-sm text-gray-500">
+                  {personaldetails.location}
+                </p>
                 <button
                   className="text-sm text-blue-500 font-semibold hover:underline"
-                  // onClick={() => setShowPopup(true)}
+                  onClick={() => setShowPopup(true)}
                 >
                   Contact info
                 </button>
               </div>
             </div>
+
+            <ContactInfoModal
+              isOpen={showPopup}
+              onClose={() => setShowPopup(false)}
+            />
 
             <div className="profilecard-right w-1/3">
               <Institutions />
@@ -105,7 +112,7 @@ function Home() {
       {/* Contact Section */}
       <section className="bg-white rounded-lg shadow p-6">
         <h2 className="text-lg font-semibold mb-4">Contact</h2>
-        <ContactCard />
+        <ContactCard page={false} />
       </section>
     </main>
   );
