@@ -11,6 +11,7 @@ import ContactInfoModal from "../components/ContactInfoModal";
 import Certifications from "../components/CertificationCard";
 import SectionCard from "../components/SectionCard";
 import ExpandableSection from "../components/ExpandableSection";
+import GitHubContributions from "../components/GitHubContributions";
 
 function Home() {
   const navigate = useNavigate();
@@ -20,7 +21,10 @@ function Home() {
   return (
     <main className="pt-20 max-w-5xl mx-auto space-y-8">
       {/* Profile Card */}
-      <section className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+      <section
+        id="profile"
+        className="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden"
+      >
         <div className="h-40 bg-gradient-to-r from-green-600 to-blue-600"></div>
 
         <div className="px-6 pb-6 -mt-12">
@@ -74,7 +78,7 @@ function Home() {
       </section>
 
       {/* About */}
-      <SectionCard title="About">
+      <SectionCard id="about" title="About">
         <p className="text-gray-700 leading-relaxed">
           💻 Software Developer who builds systems, not just code syntax.
           <br />
@@ -85,13 +89,19 @@ function Home() {
         </p>
       </SectionCard>
 
+      {/* GitHub Contributions */}
+      <SectionCard id="github" title="GitHub Contributions">
+        <GitHubContributions />
+      </SectionCard>
+      
       {/* Activity */}
-      <SectionCard title="Activity">
+      <SectionCard id="activity" title="Activity">
         <ActivitySection />
       </SectionCard>
 
+
       {/* Experience */}
-      <SectionCard title="Experience">
+      <SectionCard id="experience" title="Experience">
         <ExpandableSection
           items={Contents.experience}
           initialCount={2}
@@ -103,7 +113,7 @@ function Home() {
       </SectionCard>
 
       {/* Projects */}
-      <SectionCard title="Projects">
+      <SectionCard id="projects" title="Projects">
         <ExpandableSection
           items={Contents.projects}
           initialCount={3}
@@ -115,7 +125,7 @@ function Home() {
       </SectionCard>
 
       {/* Certifications */}
-      <SectionCard title="Licenses & Certifications">
+      <SectionCard id="certifications" title="Licenses & Certifications">
         <ExpandableSection
           items={Contents.certifications}
           initialCount={2}
@@ -127,7 +137,7 @@ function Home() {
       </SectionCard>
 
       {/* Contact */}
-      <SectionCard title="Contact">
+      <SectionCard id="contact" title="Contact">
         <ContactCard page={false} />
       </SectionCard>
     </main>
