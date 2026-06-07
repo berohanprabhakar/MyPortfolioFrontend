@@ -76,19 +76,16 @@ function AskRohanChat() {
 
   const updateStreamingAssistant = (delta: string) => {
     setChatHistory((prev) => {
-      if (!streamingMessageIdRef.current) {
-        const newAssistant = {
-          id: `assistant-${Date.now()}`,
-          role: "assistant" as const,
-          content: delta,
-        };
-        streamingMessageIdRef.current = newAssistant.id;
-        return [...prev, newAssistant];
-      }
+      const id = streamingMessageIdRef.current;
+
+      if (!id) return prev;
 
       return prev.map((message) =>
-        message.id === streamingMessageIdRef.current
-          ? { ...message, content: message.content + delta }
+        message.id === id
+          ? {
+              ...message,
+              content: message.content + delta,
+            }
           : message,
       );
     });
@@ -114,40 +111,37 @@ function AskRohanChat() {
     streamingMessageIdRef.current = null;
   };
 
-  const appendToken = (token: string) => {
-    const words = token.split(/(\s+)/);
-
-    words.forEach((w, i) => {
-      setTimeout(() => {
-        updateStreamingAssistant(w);
-      }, i * 10);
-    });
-  };
 
   const processStreamChunk = (chunk: string) => {
-    streamBufferRef.current += chunk;
+  streamBufferRef.current += chunk;
 
-    const regex = /data:\s*(\{.*?\})/g;
+  const lines = streamBufferRef.current.split("\n");
 
-    let match;
-    let lastIndex = 0;
+  // keep last incomplete line
+  streamBufferRef.current = lines.pop() || "";
 
-    while ((match = regex.exec(streamBufferRef.current)) !== null) {
-      lastIndex = regex.lastIndex;
+  for (const line of lines) {
+    const trimmed = line.trim();
 
-      try {
-        const parsed = JSON.parse(match[1]);
+    if (!trimmed.startsWith("data:")) continue;
 
-        if (typeof parsed.token === "string") {
-          appendToken(parsed.token);
-        }
-      } catch {
-        // ignore broken JSON safely
+    const data = trimmed.replace("data:", "").trim();
+
+    if (data === "done") continue;
+
+    try {
+      const parsed = JSON.parse(data);
+
+      const token = parsed?.token;
+
+      if (token) {
+        updateStreamingAssistant(token);
       }
+    } catch {
+      // ignore partial JSON
     }
-
-    streamBufferRef.current = streamBufferRef.current.slice(lastIndex);
-  };
+  }
+};
 
   const handleError = (message: string) => {
     setErrorMessage(message);
@@ -257,6 +251,13 @@ function AskRohanChat() {
     sendMessage(input);
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+  if (event.key === "Enter" && !event.shiftKey) {
+    event.preventDefault(); // prevents newline in textarea
+    sendMessage(input);
+  }
+};
+
   return (
     <div
       className={`fixed z-50 ${
@@ -355,7 +356,7 @@ function AskRohanChat() {
                         : "rounded-tl-2xl rounded-br-3xl rounded-bl-3xl rounded-tr-2xl bg-white text-slate-900 dark:bg-slate-800 dark:text-slate-100"
                     }`}
                   >
-                    <span>
+                    <span style={{ whiteSpace: "pre-wrap" }}>
                       {message.content ||
                         (message.role === "assistant" ? "…" : "")}
                     </span>
@@ -394,6 +395,7 @@ function AskRohanChat() {
                 rows={1}
                 value={input}
                 onChange={(event) => setInput(event.currentTarget.value)}
+                onKeyDown={handleKeyDown}
                 placeholder="Type a message"
                 className="flex-1 resize-none rounded-3xl border border-slate-300/80 bg-white px-4 py-3 text-sm text-slate-900 outline-none transition duration-300 ease-out focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/20 dark:border-slate-700/80 dark:bg-slate-900 dark:text-white"
                 disabled={isStreaming}
