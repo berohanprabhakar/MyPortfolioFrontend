@@ -5,6 +5,7 @@ import { ProjectCard } from "../components/ProjectCard";
 import { Contents } from "../content";
 import ActivitySection from "../components/ActivitySection";
 import { useNavigate } from "react-router-dom";
+import AskRohanChat from "../components/AskRohanChat";
 import ContactCard from "../components/ContactCard";
 import { useState } from "react";
 import ContactInfoModal from "../components/ContactInfoModal";
@@ -89,16 +90,17 @@ function Home() {
         </p>
       </SectionCard>
 
+      <AskRohanChat />
+
       {/* GitHub Contributions */}
       <SectionCard id="github" title="GitHub Contributions">
         <GitHubContributions />
       </SectionCard>
-      
+
       {/* Activity */}
       <SectionCard id="activity" title="Activity">
         <ActivitySection />
       </SectionCard>
-
 
       {/* Experience */}
       <SectionCard id="experience" title="Experience">
